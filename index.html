@@ -11,13 +11,21 @@
 <body ng-controller="appController">
     <h1>{{page.title}}</h1>
 
-    <!--dynamic page-->
+    <!--dynamic page START-->
     <div id="dynamicPage">
         <span ng-repeat="field in page.fields">
-            <label for="{{field.id}}" class="{{field.classes}}">{{field.label}}</label><input id="{{field.id}}" type="{{field.type}}" style="{{field.styles}}" placeholder="{{field.placeholder}}"></input>
+            <label for="{{field.id}}" class="{{field.classes}}">{{field.label}}</label>
+            <input id="{{field.id}}" type="{{field.type}}" style="{{field.styles}}" placeholder="{{field.placeholder}}" ng-model="field.value"></input>
             <br/>
         </span>
+        <span ng-init="button = page.buttons">
+            <button type="{{button[0].type}}" class="{{button[0].classes}}" style="{{button[0].styles}}" ng-click="registerData()">{{button[0].label}}</button>
+            <button type="{{button[1].type}}" class="{{button[1].classes}}" style="{{button[1].styles}}" ng-click="clearRegisterData()">{{button[1].label}}</button>
+        </span>
     </div>
+    <!--dynamic page END
+    <button type="{{button.type}}" class="{{button.classes}}" style="{{button.styles}}" ng-click="{{button.wfunction}}()">{{button.label}}</button>
+    -->
 
 </body>
 </html>
