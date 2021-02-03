@@ -8,6 +8,7 @@ Building generic page based upon JSON value store in database.
 
 like here is our generic page json.
 
+```javascript
 page = {
         title:"Registration Form",
         fields:[{
@@ -59,3 +60,4 @@ page = {
         }
     ]
     };
+```    
