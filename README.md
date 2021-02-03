@@ -1,7 +1,7 @@
 # generic-page-angularjs
 Generic page, building based upon JSON data saved in database.
 
-#demo link
+# demolink
 https://parveen-sishodiya-git.github.io/generic-page-angularjs/
 
 Building generic page based upon JSON value store in database.
