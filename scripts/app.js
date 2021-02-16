@@ -3,22 +3,7 @@ angular.module("mainApp",[]).controller("appController",function($scope){
     $scope.page = {
         title:"Registration Form",
         fields:[{
-            id:"firstName",
-            label:"First Name",
-            value:"",
-            type:"text",
-            placeholder:"Enter your first name",
-            styles:"width:30em",
-            jsonName:"firstName"
-        },{
-            id:"lastName",
-            label:"Last Name",
-            value:"",
-            type:"text",
-            placeholder:"Enter your last name",
-            classes:"mylabel",
-            jsonName:"lastName"
-        },{
+            sno:4,
             id:"email",
             label:"Email",
             value:"",
@@ -27,6 +12,16 @@ angular.module("mainApp",[]).controller("appController",function($scope){
             styles:"width:55em",
             jsonName:"email"
         },{
+            sno:2,
+            id:"lastName",
+            label:"Last Name",
+            value:"",
+            type:"text",
+            placeholder:"Enter your last name",
+            classes:"mylabel",
+            jsonName:"lastName"
+        },{
+            sno:3,
             id:"age",
             label:"Age",
             value:18,
@@ -34,6 +29,64 @@ angular.module("mainApp",[]).controller("appController",function($scope){
             placeholder:"Enter your age",
             styles:"width:40em",
             jsonName:"age"
+        },{
+            sno:1,
+            id:"firstName",
+            label:"First Name",
+            value:"",
+            type:"text",
+            placeholder:"Enter your first name",
+            styles:"width:30em",
+            jsonName:"firstName"
+        },{
+            sno:5,
+            id:"dob",
+            label:"DOB",
+            value:"",
+            type:"datetime-local",
+            placeholder:"Enter your date of birth",
+            styles:"width:30em",
+            jsonName:"dob"
+        },{
+            sno:7,
+            id:"car",
+            label:"Car",
+            value:"",
+            type:"dropdown",
+            options:[{
+                value:"audi",
+                displayValue:"Audi Car"
+            },{
+                value:"merc",
+                displayValue:"Mercedese Car"
+            },{
+                value:"alto",
+                displayValue:"Alto Car"
+            },{
+                value:"other",
+                displayValue:"Other"
+            }],
+            styles:"width:30em",
+            jsonName:"car"
+        },{
+            sno:6,
+            id:"maritalStatus",
+            label:"Marital Status",
+            value:false,
+            type:"checkbox",
+            styles:"width:30em",
+            options:["Married","Single","Divorsed"],
+            jsonName:"maritalStatus",
+            display:false
+        },{
+            sno:8,
+            id:"hobbies",
+            label:"Hobbies",
+            value:[],
+            type:"checkbox",
+            options:["Cricket","Chess","Hockey","Basketball"],
+            styles:"width:30em",
+            jsonName:"hobb"
         }],
         buttons:[{
             label:"Submit",
@@ -48,9 +101,33 @@ angular.module("mainApp",[]).controller("appController",function($scope){
             classes:"menubutton",
             wfunction:"clearRegisterData",
             type:"button"
-        }
-    ]
+        }]
     };
+
+    $scope.selection = [];
+
+    $scope.toggleSelection = function toggleSelection(fruitName , fieldId) {
+        console.log("clicked "+fruitName+" "+fieldId);
+
+        $scope.page.fields.forEach(e => {
+            if(e.id == fieldId){
+                e.value = $scope.selection;
+            }
+        });
+        
+        var idx = $scope.selection.indexOf(fruitName);
+        
+        // Is currently selected
+        if (idx > -1) {
+          $scope.selection.splice(idx, 1);
+        }
+    
+        // Is newly selected
+        else {
+          $scope.selection.push(fruitName);
+        }
+      };
+
 
     $scope.clearRegisterData = ()=>{
         console.log("clearing data");

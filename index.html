@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="mainApp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="./scripts/app.js"></script>
 </head>
+
 <body ng-controller="appController">
     <h1>{{page.title}}</h1>
 
     <!--dynamic page START-->
     <div id="dynamicPage">
-        <span ng-repeat="field in page.fields">
-            <label for="{{field.id}}" class="{{field.classes}}">{{field.label}}</label>
-            <input id="{{field.id}}" type="{{field.type}}" style="{{field.styles}}" placeholder="{{field.placeholder}}" ng-model="field.value"></input>
-            <br/>
+
+        <span ng-repeat="field in page.fields | orderBy:'sno'">
+            <span ng-if="field.display != false">
+                <label for="{{field.id}}" class="{{field.classes}}">{{field.label}}</label>
+                <input id="{{field.id}}" ng-hide="{{field.type == 'dropdown'}} || {{field.type == 'checkbox'}}"
+                    type="{{field.type}}" style="{{field.styles}}" placeholder="{{field.placeholder}}"
+                    ng-model="field.value"></input>
+                <select ng-show="{{field.type == 'dropdown'}}" ng-model="field.value" style="{{field.styles}}"
+                    id="{{field.id}}">
+                    <option ng-repeat="option in field.options" value="{{option.value}}">{{option.displayValue}}
+                    </option>
+                </select>
+                <label ng-show="{{field.type == 'checkbox'}}" ng-repeat="option in field.options">
+                    <input type="checkbox" value="{{option}}" ng-checked="selection.indexOf(option) > -1"
+                        ng-click="toggleSelection(option , field.id)"> {{option}}
+                </label>
+                <br />
+            </span>
         </span>
+      
         <span ng-init="button = page.buttons">
-            <button type="{{button[0].type}}" class="{{button[0].classes}}" style="{{button[0].styles}}" ng-click="registerData()">{{button[0].label}}</button>
-            <button type="{{button[1].type}}" class="{{button[1].classes}}" style="{{button[1].styles}}" ng-click="clearRegisterData()">{{button[1].label}}</button>
+            <button type="{{button[0].type}}" class="{{button[0].classes}}" style="{{button[0].styles}}"
+                ng-click="registerData()">{{button[0].label}}</button>
+            <button type="{{button[1].type}}" class="{{button[1].classes}}" style="{{button[1].styles}}"
+                ng-click="clearRegisterData()">{{button[1].label}}</button>
         </span>
     </div>
     <!--dynamic page END
     <button type="{{button.type}}" class="{{button.classes}}" style="{{button.styles}}" ng-click="{{button.wfunction}}()">{{button.label}}</button>
     -->
 
+
+
 </body>
+
 </html>
