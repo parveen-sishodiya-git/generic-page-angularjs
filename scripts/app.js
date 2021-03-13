@@ -1,8 +1,8 @@
 angular.module("mainApp", []).controller("appController", function ($scope) {
     console.log("i will load");
     $scope.jsontitle = "JSON Using";
-    $scope.page =
-    {
+    $scope.JSONerror = null; 
+    $scope.page ={
         title: "Dynamic Registration Form",
         fields: [{
             sno: 4,
@@ -17,7 +17,7 @@ angular.module("mainApp", []).controller("appController", function ($scope) {
             sno: 2,
             id: "lastName",
             label: "Last Name",
-            value: "",
+            value: "SISHODIYA",
             type: "text",
             placeholder: "Enter your last name",
             classes: "mylabel",
@@ -108,6 +108,18 @@ angular.module("mainApp", []).controller("appController", function ($scope) {
 
     $scope.displayJson = JSON.stringify($scope.page, null, 4);
     $scope.selection = [];
+
+
+    $scope.jsonChanged = ()=>{
+        try {
+            $scope.page = JSON.parse($scope.displayJson);
+            $scope.JSONerror = null; 
+        } catch (error) {
+            console.log(error);
+            $scope.page = null;
+            $scope.JSONerror = error; 
+        }
+    }
 
     $scope.toggleSelection = function toggleSelection(fruitName, fieldId) {
         console.log("clicked " + fruitName + " " + fieldId);
