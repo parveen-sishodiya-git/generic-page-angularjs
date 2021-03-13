@@ -2,6 +2,22 @@
     font-weight: bold;
 }
 
+.mainTitle{
+  color: gray;
+}
+
+.sec-col{
+  border-left: 1px solid #bdbdbd;
+  max-height: 40em;
+    overflow: scroll;
+}
+
+.pre-block{
+  background: #80808026;
+  margin: 0px 17px;
+  color: darkblue;
+}
+
 input{
     padding: 15px;
     margin: 5px 0 22px 0;

@@ -5,16 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="./scripts/app.js"></script>
 </head>
 
 <body ng-controller="appController">
-    <h1>{{page.title}}</h1>
 
-    <!--dynamic page START-->
-    <div id="dynamicPage">
+    <div class="row">
+        <div class="col-6">
+            <h1 class="mx-3 mainTitle">{{page.title}}</h1>
+        </div>
+        <div class="col-6">
+            <h1 class="mx-3 mainTitle">{{jsontitle}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <hr>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-6">
+            <!--dynamic page START-->
+    <div id="dynamicPage" class="container">
 
         <span ng-repeat="field in page.fields | orderBy:'sno'">
             <span ng-if="field.display != false">
@@ -42,6 +59,18 @@
                 ng-click="clearRegisterData()">{{button[1].label}}</button>
         </span>
     </div>
+        </div>
+        <div class="col-6">
+            <div class="sec-col">
+                <pre class="pre-block">
+                    <code>
+                        {{displayJson}}
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </div>
+    
     <!--dynamic page END
     <button type="{{button.type}}" class="{{button.classes}}" style="{{button.styles}}" ng-click="{{button.wfunction}}()">{{button.label}}</button>
     -->
